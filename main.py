@@ -54,15 +54,16 @@ def naga(bot, update):
 
 def inlinequery(bot, update):
     """Handle the inline query."""
+    data = get_naga()
     query = update.inline_query.query
     results = [
         InlineQueryResultArticle(
             id=uuid4(),
             title="NAGA TICKER",
             input_message_content=InputTextMessageContent(
-                get_naga())),]
+                data)),]
 
-    update.inline_query.answer(results)
+    update.inline_query.answer(results, cache_time=0)
 
 
 def error(bot, update, error):
